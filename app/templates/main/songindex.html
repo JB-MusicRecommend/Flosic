@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="kor">
+    <head>
+        <meta charset = "UTF-8">
+        <title> 음악 목록 </title>
+        
+    </head>
+
+    <body>
+        <button onclick="location.href='/'">홈</button>
+        <button onclick="location.href='/flowerindex'">꽃 데이터로 이동</button>
+        <button onclick="location.href='/adminlogout'">로그아웃</button>
+        <button onclick="location.href='/resetaisong'">재정렬</button>
+
+        <form action="/addsong" method="POST" enctype="multipart/form-data">
+            <input type="file" name="csv">
+            <input type="submit" value="upload">
+        </form>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Genre</th>
+                    <th>Rdate</th>
+                    <th>lyrics</th>
+                    <th>Enlyr</th>
+                    <th>Preproc</th>
+                    <th>Postproc</th>    
+                    <th>  </th>
+                </tr>
+            </thead>
+       
+            <tbody>
+                {% for song in song_list %}
+                    <tr>
+                        <td>{{ song['id'] }}</td>
+                        <td>{{ song['title'] }}</td>
+                        <td>{{ song['artist'] }}</td>
+                        <td>{{ song['genre'] }}</td>
+                        <td>{{ song['rdate'] }}</td>
+                        <td>{{ song['lyrics'][:10] }}</td>
+
+                        {% if song['enlyr'] != None %}
+                            <td>{{ song['enlyr'][:10] }}</td>
+                        {% else %}
+                            <td>    </td>
+                        {% endif %}
+
+                        {% if song['preproc'] != None %}
+                            <td>{{ song['preproc'][:10] }}</td>
+                        {% else %}
+                            <td>    </td>
+                        {% endif %}
+                        
+                        {% if song['postproc'] != None %}
+                            <td>{{ song['postproc'][:10] }}</td>
+                        {% else %}
+                            <td>    </td>
+                        {% endif %}
+                    
+                        <td><form action="/deletesong/{{ song['id'] }}" method="POST">
+                                <input type="submit" value="delete">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+   
+    </body>
+</html>

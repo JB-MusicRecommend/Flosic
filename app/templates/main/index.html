@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <body style="overflow: auto;"><div id="loading" style="display: none;">
+        <div id="loading_image"></div>
+    </div>
+    
+    <div id="wrap">
+        <header id="header" class="fix">
+            <div class="inner">
+                <h1><a href="/"><img src="{{ url_for('static', filename='image/logo.jpg') }}" width="300">TEAMasdf</a></h1>
+                <nav>
+                    
+                    <ul class="lnb">
+                        
+                        <li><a href="#introduce" onclick="fnMove('1')">소개</a></li>
+                        <li><a href="#process" onclick="fnMove('2')">이용방법</a></li>
+                        <li><a href="#advantage" onclick="fnMove('3')">서비스특징</a></li>
+                        
+                    </ul>
+                    
+                </nav>
+                
+            </div>
+        </header>
+    </div>
+    <script type="text/javascript">
+        // 페이지 로드 시, 로딩창 숨김
+        $(window).load(function() {
+            $("body").css("overflow", "auto");
+            $("#loading").hide();
+        });
+    
+        //header scroll fixed
+        let speed = 100; // 스크롤 속도
+        let header = 0;
+        $(window).scroll(function(){
+            if($(document).scrollTop() > 100) { //스크롤 위치가 100쯤 되었을 때 실행
+                if(header == 0) {
+                    header = 1;
+                    $("header").addClass("fix");
+                }
+            } else {
+                if(header == 1) {
+                    header = 0;
+                    $("header").removeClass("fix");
+                }
+            }
+        });
+        $(function (){
+            $(".bt_menu").on("click", function() {
+                $("header nav").show();
+            });
+            
+            $(".bt_close").on("click", function() {
+                $("header nav").hide();
+            });
+    
+            $("button.sub_ct_toggle").on("click", function() {
+                const $this = $(this);
+                $sub_ul = $(this).closest("li").children("ul.sub_cate");
+                if($sub_ul.size() > 0) {
+                    let txt = $this.text();
+                    if($sub_ul.is(":visible")) {
+                        txt = txt.replace(/닫기$/, "열기");
+                        $this.removeClass("ct_cl").text(txt);
+                    } else {
+                        txt = txt.replace(/열기$/, "닫기");
+                        $this.addClass("ct_cl").text(txt);
+                    }
+    
+                    $sub_ul.toggle();
+                }
+            });
+            $(".content li.con").hide();
+            $(".content li.con:first").show();
+            $(".cate_tab li a").click(function(){
+                $(".cate_tab li a").removeClass("selected");
+                $(this).addClass("selected");
+                $(".content li.con").hide();
+                $($(this).attr("href")).fadeIn();
+            });
+        });
+        
+        $("#btn_cate").on("click", function() {
+            $("#category").show();
+        });
+        $(".menu_close").on("click", function() {
+            $(".menu").hide();
+        });
+        $(".cate_bg").on("click", function() {
+            $(".menu").hide();
+        });
+        $(".btn_ol").on("click", function() {
+            $(".ol").show();
+        });
+        $(".ol .btn_close").on("click", function() {
+            $(".ol").hide();
+        });
+        $("#btn_sch").on("click", function() {
+            $("#hd_sch").show();
+        });
+        $("#hd_sch .btn_close").on("click", function() {
+            $("#hd_sch").hide();
+        });
+    </script>
+    
+    <hr>
+    
+    <!-- footer에 닫는 태그 있음 -->
+    <div id="container">
+    
+    
+        
+        <!-- 본문-->
+        
+        <div class="visual">
+            <div class="inner">
+                <h2>TEAMasdf
+                </h2>
+                 
+                <p>꽃말음악추천.</p>
+                
+                
+                <a href="/select" class="bt_more">지금 시작하기</a>
+                <span class="ani_circle"></span>
+            </div>
+        </div>
+        
+        <hr>
+        <section id="introduce" class="cont1">
+            <h2><mark>소개말</mark>
+            (소개말)</h2>
+            <p>가나다라마바사</p>
+            
+            
+        </section>
+        
+        <section id="process" class="cont2">
+            <h2>이용방법
+            <mark>(이용방법)</mark></h2>
+            
+        
+        <section id="advantage" class="cont3">
+            <div class="box">
+                <img src="{{ url_for('static', filename='image/logo.jpg') }}" alt="">
+                <h2>서비스특징
+                <mark>(서비스특징)</mark></h2>
+                <p>가나다라마바사</p>
+            </div>
+        </section>
+        
+        <a href="/loginPage" class="bt_more">지금 시작하기</a>
+        
+        <script>
+            $(function() {
+                /*<![CDATA[*/
+                const msg = null;
+                if (msg != null) {
+                    alert(msg);
+                }
+                /*]]>*/
+            });
+        </script>
+    
+        
+        <!-- Footer -->
+        
+    <hr>
+    <aside class="mr_btn_area">
+        <div class="box"></div>
+    </aside>
+    
+    </body>
+</body>
+</html>

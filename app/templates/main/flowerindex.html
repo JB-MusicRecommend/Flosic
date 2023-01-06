@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="kor">
+    <head>
+        <meta charset = "UTF-8">
+        <title> 꽃 목록 </title>
+        
+    </head>
+
+    <body>
+        <button onclick="location.href='/'">홈</button>
+        <button onclick="location.href='/songindex'">음악 데이터로 이동</button>
+        <button onclick="location.href='/adminlogout'">로그아웃</button>
+        <button onclick="location.href='/resetaiflower'">재정렬</button>
+        
+        
+        <div>꽃 추가
+            <form action="/addflower" method="post">
+                꽃 이름 : <input name='name' type='text'/><br>
+                꽃 말   : <input name='word' type='text'/><br>
+                꽃 설명 : <input name='etc' type='text'/><br>
+                <input type="submit" value="추가">
+            </form>
+        </div>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Word</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+       
+            <tbody>
+                {% for flower in flower_list %}
+                    <tr>
+                        <td>{{ flower['id'] }}</td>
+                        <td>{{ flower['name'] }}</td>
+                        <td>{{ flower['word'] }}</td>
+                        <td>{{ flower['etc'] }}</td>
+                            
+                        <td><form action="/deleteflower/{{ flower['id'] }}" method="POST">
+                                <input type="submit" value="delete">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+   
+    </body>
+</html>
