@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flosic</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style media="screen">
+        @import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 100%;
+            height: auto;
+        }
+
+        
+        @import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
+        
+        /* 초기화 */
+        
+        /* date : 2020-04-10 / name : gwj */
+        .skip, legend {
+            position: absolute
+        }
+        
+        a, abbr, address, article, aside, audio, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, div, dl, dt, em, fieldset, figcaption, figure, footer, form,
+        h1, h2, h3, h4, h5, header, hgroup, hr, html, i, iframe, img, ins, kbd, main, mark, nav, ol, output, p, pre, q, ruby, s, samp, section, small, span, strong, sub, summary, sup,
+        tbody, td, tfoot, th, thead, time, tr, u, ul, var, video, button, input, textarea, label, .menuli {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            font: inherit;
+            vertical-align: baseline;
+            -webkit-user-drag: none;
+        }
+        
+        body {
+            line-height: 1;
+            font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+            font-size: 22px;
+            font-weight: 300;
+            color: #797979;
+            letter-spacing: -.04em;
+            word-break: keep-all;
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+        
+        ol, ul {
+            list-style: none
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+        
+        caption, hr {
+            display: none
+        }
+        
+        legend {
+            height: 0;
+            font-size: 0;
+            line-height: 0;
+            overflow: hidden;
+            text-indent: -20000px
+        }
+        
+        address, cite, em {
+            font-style: normal
+        }
+        
+        button, label {
+            cursor: pointer;
+            color: inherit
+        }
+        
+        button {
+            border: 0;
+            background: 0 0;
+            display: inline-block
+        }
+        
+        mark {
+            background: none;
+            color: inherit
+        }
+        
+        article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+            display: block
+        }
+        
+        .skip {
+            visibility: hidden;
+            top: 0;
+            left: 0
+        }
+        
+        
+        .bt_more {
+            display: inline-block;
+            font-weight: 700;
+            font-size: .864em;
+            padding: .8em 2.5em;
+            border-radius: 50px;
+            color: #fff;
+            background: #0fafe4;
+            background: -moz-linear-gradient(left, #3ecd96 0%, #238659 100%);
+            background: -webkit-linear-gradient(left, #3ecd96 0%, #238659 100%);
+            background: linear-gradient(to right, #3ecd96 0%, #238659 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0fafe4', endColorstr='#6a20f5', GradientType=1);
+        }
+        
+        /* layout */
+        #wrap {
+            width: 100%;
+            height: auto;
+        }
+        
+        #header {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9;
+            color: #fff;
+        }
+        
+        .header_sub {
+            background: #7b6fdd;
+        }
+        
+        #footer {
+            width: 100%;
+            height: auto;
+            text-align: center;
+            padding: 3.765em 1.143em;
+            font-size: .773em;
+            box-sizing: border-box;
+        }
+        
+        /* header */
+        #header .inner {
+            width: 100%;
+            max-width: 1280px;
+            height: auto;
+            padding: 1.5em 0;
+            margin: 0 auto;
+            position: relative;
+            transition: all .2s linear;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        
+        #header h1 {
+            float: left;
+            width: 25%;
+            font-size: 0;
+            transition: all .2s linear;
+        }
+        
+        #header h1 a {
+            display: block;
+            width: 213px;
+            height: 49px;
+            background: url("C:/cdhpy/MusicRecommend/app/image/logo.jpg") 0 0 no-repeat;
+            background-size: 100%;
+        }
+        
+        #header .bt_menu {
+            display: none;
+            width: 32px;
+            height: 32px;
+            font-size: 0;
+            position: relative;
+        }
+        
+        #header .bt_menu i {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #fff;
+        }
+        
+        #header .bt_menu i:before,
+        #header .bt_menu i:after {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: inherit;
+            position: absolute;
+        }
+        
+        #header .bt_menu i:before {
+            top: 9px;
+        }
+        
+        #header .bt_menu i:after {
+            bottom: 9px;
+        }
+        
+        #header nav {
+            float: left;
+            width: 50%;
+            height: auto;
+            text-align: center;
+            font-weight: 500;
+            font-size: .909em;
+        }
+        
+        #header nav .lnb li {
+            display: inline-block;
+        }
+        
+        #header nav .lnb li a {
+            display: block;
+            padding: .7em 1.2em;
+        }
+        
+        #header nav .lnb li a:visited {
+            color: #fff;	
+        }
+        
+        #header nav .lnb li a:hover {
+            color: #f5d36d;
+        }
+        
+        #header nav .mo_gnb {
+            display: none;
+            font-size: .6em;
+            margin-top: 3em;
+        }
+        
+        #header nav .mo_gnb li {
+            display: inline-block;
+            margin: 0 1%;
+        }
+        
+        #header nav .mo_gnb li a {
+            display: block;
+            padding: 12px 24px;
+            border: 1px solid currentColor;
+            border-radius: 50px;
+            box-sizing: border-box;
+        }
+        
+        #header nav .bt_close {
+            display: none;
+            width: 100%;
+            height: auto;
+            margin-top: .7em;
+            font-size: 48px;
+            text-align: center;
+        }
+        
+        #header .gnb {
+            float: right;
+            width: 25%;
+            text-align: right;
+            font: bold 14px 'Malgun Gothic';
+        }
+        
+        #header .gnb li {
+            display: inline-block;
+        }
+        
+        #header .gnb li a {
+            display: block;
+            padding: 12px 24px;
+            border: 1px solid currentColor;
+            border-radius: 50px;
+            box-sizing: border-box;
+        }
+        
+        #header .gnb li a:visited {
+            color: #fff;
+        }
+        
+        
+        #header .gnb li a:hover {
+            background-color: #fff;
+            color: #327dcd;
+        }
+        
+        /* header : fix */
+        #header.fix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #FFF;
+            color: #181818;
+            box-shadow: 0 1px 15px rgba(0, 0, 0, .1);
+        }
+        
+        #header.fix .inner {
+            padding: .7em 0;
+        }
+        
+        #header.fix h1 a {
+            background-position: 0 -49px;
+        }
+        
+        #header.fix nav .lnb li a:visited {
+            color: #181818;
+        }
+        
+        #header.fix nav .lnb li a:hover {
+            color: #3ecd96;
+        }
+        
+        #header.fix .gnb li a:visited {
+            color: #181818;
+        }
+        
+        #header.fix .gnb li a:hover {
+            color: #3ecd96;
+        }
+        
+        #header.fix .bt_menu i {
+            background-color: #3ecd96;
+        }
+        
+        @media screen and (max-width: 1366px) {
+            /* header */
+            #header .inner {
+                padding: 1.524em 1.143em;
+            }
+            
+            #header.fix .inner {
+                padding: .7em 1.143em;
+            }
+            
+            #header.fix nav .lnb li a:visited {
+                color: #181818;
+            }
+            
+            #header.fix nav .lnb li a:hover {
+                color: #6133e7;
+            }
+            
+            #header.fix .gnb li a:visited {
+                color: #181818;
+            }
+        }
+
+
+
+        .container{
+            margin: 10px;
+            position: absolute;
+            top: 300px;
+            text-align: center;
+            width: 100%;
+
+        }
+
+        .songlist{
+            width: 480px;
+            height: 600px;
+            background-color: gray;
+            border-radius: 3%;
+            display: inline-block;
+            margin: auto;
+
+        }
+
+        .flowerui{
+            width: 550px;
+            height: 600px;
+            background-color: rgb(68, 218, 153);
+            border-radius: 3%;
+            display: inline-block;
+            margin: auto;
+            text-align: center;
+        }
+
+        .opr{
+            position: relative;
+            display: block;
+            width: 100%;
+            text-align: center;
+            align-items: center;
+            top: 150px;
+        }
+        
+
+        .slide {
+            width: auto;
+            height: 120px;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+            padding-top: 10px;
+            background-color: #62d5a9;
+            top: 120px;
+        }
+    
+        .slide ul {
+            width: 4200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0;
+        }
+    
+        .slide ul li {
+            display: inline-block;
+        }
+    
+        #back {
+            position: absolute;
+            top: 45px;
+            left: 0;
+            cursor: pointer;
+            z-index: 1;
+        }
+    
+        #next {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .box {
+            width: 840px;
+            height: 300px;
+            display: inline-block;
+            margin-block: 0px;
+
+        }
+
+        li {
+            float: left;
+            margin-left: 20px ;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            text-align: center;
+            
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        .hover_text {
+            position: absolute;
+            top: 140px;
+            left: 25px;
+            color: #fff;
+            z-index: 20;
+            font-weight: 600;
+            font-size: 20px;
+            opacity: 0;
+        }
+
+        #box li:hover .hover_text{
+            opacity: 1;
+        }
+    
+        #fl {
+            border-radius: 50%;
+        
+        }
+        #fl:hover{
+            filter: brightness(0.5);
+        }
+        #fl:hover #info {
+            opacity: 1;
+        }
+
+
+        .flower{
+            
+            text-align: center;
+            display: inline-block;
+            margin: 35px auto;
+        }
+
+        #dark{
+            height: 90px;
+            background-color: rgba(226, 226, 226, 0.392);
+            margin: 0 5px 0 5px;
+        }
+
+        #light{
+            height: 90px;
+            background-color: #fff;
+            margin: 0 5px 0 5px;
+        }
+
+    </style>
+<body>
+
+    <div id="wrap">
+        <header id="header" class="fix">
+            <div class="inner">
+                <h1><a href="/"><img src="{{ url_for('static', filename='image/logo.jpg') }}" width="300">TEAMasdf</a></h1>
+                <nav>
+                    
+                    <ul class="lnb">
+                        
+                        <li class="menuli"><a href="/#introduce" onclick="fnMove('1')">소개</a></li>
+                        <li class="menuli"><a href="/#process" onclick="fnMove('2')">이용방법</a></li>
+                        <li class="menuli"><a href="/#advantage" onclick="fnMove('3')">서비스특징</a></li>
+                        
+                    </ul>
+                </nav>
+                
+            </div>
+        </header>
+    </div>
+
+    <div class="slide">
+        <img id="back" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FcK32wf%2FbtqEBnQ2bSV%2FRUnYwxbL6CANymmbJNtVk0%2Fimg.png" alt="" width="50">
+        <ul>
+            <div class="box">
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0000.jpg') }}" alt="" width="100" height="100"><p class="hover_text">flower1</p></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0001.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0002.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0003.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0004.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0005.jpg') }}" alt="" width="100" height="100"></a></li>
+            </div>
+    
+            <div class="box">
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0006.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0007.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0008.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0009.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0010.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0011.jpg') }}" alt="" width="100" height="100"></a></li>
+            </div>
+    
+            <div class="box">
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0012.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0013.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0014.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0015.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0016.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0017.jpg') }}" alt="" width="100" height="100"></a></li>
+            </div>
+    
+            <div class="box">
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0018.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0019.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0020.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0021.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0022.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0023.jpg') }}" alt="" width="100" height="100"></a></li>
+            </div>
+    
+            <div class="box">
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0024.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0025.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0026.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0027.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0028.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0029.jpg') }}" alt="" width="100" height="100"></a></li>
+            </div>
+        </ul>
+        <img id="next" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FTWq2J%2FbtqEBdA2ene%2FhGRW5eH7EFHllWqfIGDFr1%2Fimg.png" alt="" width="50">
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var imgs;
+        var img_count;
+        var img_position = 1;
+        imgs = $(".slide ul");
+        img_count = imgs.children().length;
+        //버튼을 클릭했을 때 함수 실행
+        $('#back').click(function() {
+            back();
+        });
+        $('#next').click(function() {
+            next();
+        });
+
+        function back() {
+            if (1 < img_position) {
+                imgs.animate({
+                    left: '+=1050px'
+                });
+                img_position--;
+            }
+        }
+
+        function next() {
+            if (img_count > img_position) {
+                imgs.animate({
+                    left: '-=1050px'
+                });
+                img_position++;
+            }
+        }
+        //이미지 끝까지 가면 버튼 사라지기
+        //첫 이미지로 돌아오기
+    });
+</script>
+
+    <div class="container">
+        <div class="flowerui">
+            <div class="flower">
+                <img id="finfo" src="{{ url_for('static', filename='image/0000.jpg') }}" alt="" width="300" height="300">
+                <h3 id="finfo">{{ flowerlist[0]["꽃이름"] }}</h3>
+                <p id="finfo">{{ flowerlist[0]["꽃말"] }}</p>
+                <p id="finfo">{{ flowerlist[0]["꽃정보"] }}</p>
+            </div>
+        </div>
+    
+        <div class="songlist">
+            <div id="dark"></div>
+            <div id="light"></div>
+            <div id="dark"></div>
+            <div id="light"></div>
+            <div id="dark"></div>
+            <div id="light"></div>
+            <div id="dark"></div>
+            <div id="light"></div>
+            <div id="dark"></div>
+            <div id="light"></div>
+        </div>
+    </div>
+
+    
+
+    
+    
+</body>
+</html>

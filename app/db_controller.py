@@ -31,6 +31,20 @@ def reset_ai(table):
 
     conn.close()
 
+def update_song_list(song_list):
+    
+    db = Session()
+    db.query(Song).delete()
+    db.commit()
+
+    for song in song_list:
+        object = Song(title = song['title'], artist = song['artist'], genre = song['genre'], rdate = song['rdate'], lyrics = song['lyrics'], enlyr = song['enlyr'], preproc = song['preproc'], postproc = song['postproc'])
+        db.add(object)
+    db.commit()
+    reset_ai('song')
+    db.close()
+
+
 
 def recieve_csv_tolist():
     song_list = []

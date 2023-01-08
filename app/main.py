@@ -1,39 +1,49 @@
 from flask import Flask, render_template, request, redirect, session
 import db_controller as db
+import sessionfeature as ssft
+import img_controller as imgctr
+import os
+import lmodelupdate as lmdupdate
 
 app = Flask(__name__)
 app.secret_key = 'sk'
-
  
 @app.route("/")
 @app.route("/home")
 def home():
-    if 'id' not in session:
-        session['id'] = None
+    if 'auth' not in session:
+        ssft.create_session()
+
     return render_template('main/index.html')
 
+@app.route('/selectsong')
+def selectsong():
+    return render_template('main/selectsong.html')
+
+@app.route('/matchedlist')
+def matchedlist():
+    return render_template('main/matchedlist.html')
+
 @app.route("/adminlogin", methods=['GET', 'POST'])
-def admlogin():
-    if 'id' not in session:
-        session['id'] = None
+def admlogin():       
     if request.method == 'POST':
-            session['id'] = request.form['id']
-    if session['id'] == 'admin1234':
-        return redirect('/songindex/')
-    else:
-        return render_template('main/adminlogin.html')
+        if request.form['auth'] == 'admin1234':
+            session['auth'] = request.form['auth']
+            return redirect('/songindex/')
+    
+    return render_template('main/adminlogin.html')
 
 
 @app.route('/adminlogout')
 def logout():
-    session.pop('id', None)
-    return redirect('/adminlogin')
+    ssft.delete_session()
+    return redirect('/')
 
 
 @app.route("/songindex/")
 def songindex():   
-    if session['id'] == 'admin1234':
-        return render_template('main/songindex.html', song_list = db.read_song_tolist())
+    if session['auth'] == 'admin1234':
+        return render_template('main/songindex.html', song_list = db.read_song_tolist(), session = session)
     else:
         return redirect('/adminlogin')  
 
@@ -57,7 +67,7 @@ def deletesong(id):
 
 @app.route("/flowerindex/")
 def flowerindex():
-    if session['id'] == 'admin1234':
+    if session['auth'] == 'admin1234':
         return render_template('main/flowerindex.html',flower_list = db.read_flower_tolist())
     else:
         return redirect('/adminlogin') 
@@ -84,6 +94,32 @@ def resetaisong():
 def resetaiflower():
     db.reset_ai("flower")
     return redirect('/flowerindex/')
+
+@app.route("/uploadimage", methods=['GET', 'POST'])
+def uploadimage():   
+    if request.method == 'POST':
+        image = request.files['image']
+        modified_dir_path = imgctr.upload_image(image,session)
+        session['dir'] = modified_dir_path
+
+    return redirect('/songindex/')
+
+@app.route("/predictimage")
+def predictimage():
+    if session['dir'] is not None:
+        if os.path.exists(session['dir']):
+            dir = os.path.dirname(os.path.dirname(session['dir']))      
+            predicted_number = imgctr.predict_image(dir)     
+            predicted_flower = [name for name, number in imgctr.flower_list.items() if number == predicted_number][0]
+            session['preimg'] = predicted_flower
+         
+    return redirect('/songindex/')
+
+@app.route("/gnumodel")
+def gnsmodel():
+    lmdupdate.generate_and_update_model()
+    return redirect('/songindex/')
+
 
 
 if __name__ == "__main__":
