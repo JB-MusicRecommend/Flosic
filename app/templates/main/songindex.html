@@ -2,8 +2,9 @@
 <html lang="kor">
     <head>
         <meta charset = "UTF-8">
-        <title> 음악 목록 </title>
-        
+        <title> 음악 목록 및 디버깅 </title>
+        id : {{session['id']}} auth : {{session['auth']}} imgup : {{session['imgup']}} dir : {{session['dir']}} preimg : {{session['preimg']}}
+
     </head>
 
     <body>
@@ -11,12 +12,34 @@
         <button onclick="location.href='/flowerindex'">꽃 데이터로 이동</button>
         <button onclick="location.href='/adminlogout'">로그아웃</button>
         <button onclick="location.href='/resetaisong'">재정렬</button>
+        </br>
+        <button onclick="location.href='/predictimage'">이미지 예측</button>
+        </br>
+        <button onclick="location.href='/gnumodel'">가사 모델 업데이트 후 db 업데이트</button>
+        <h4>{{process}}</h4>
+        
 
-        <form action="/addsong" method="POST" enctype="multipart/form-data">
+        이미지 업로드 <form action="/uploadimage" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <input type="submit" value="upload">
+        </form>
+
+        </br>
+
+        
+        {% if session[dir] != 'none' %}
+            {% set dir = '../.' + session['dir'] %}
+            <img src="{{ dir }}">
+        {% endif %}
+        </br>
+
+        csv파일 업로드 <form action="/addsong" method="POST" enctype="multipart/form-data">
             <input type="file" name="csv">
             <input type="submit" value="upload">
         </form>
-        
+
+         </br>
+
         <table border="1">
             <thead>
                 <tr>

@@ -1,7 +1,7 @@
 db = {
     'user': 'root',
     'password': 'root',
-    'host': '172.31.40.169',
+    'host': 'localhost',
     'port': 3306,
     'database': 'flector'
 }
