@@ -683,8 +683,8 @@
                     
                     {% set url = "../../static/image/" + (flower['id']|string) + ".jpg" %}
                     <img id="finfo" src= {{ url }} alt="" width="300" height="300">
+                    <p id="finfo">{{ flower["name"] }}</p>
                     <p id="finfo">{{ flower["word"] }}</p>
-                    <p id="finfo">{{ flower["etc"] }}</p>
                 </div>
             </div>
         
