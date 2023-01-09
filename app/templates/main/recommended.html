@@ -699,27 +699,42 @@
                 </div>
         
                 <div class="songlist" >
-                    {% for i in range(song_list | length) %}
-                        {% if i % 2 == 1 %}
                             <div id="dark">
                                 <div id="sinfo">
-                                    <div id="title">{{ song_list[i]["name"] }}</div>
-                                    <div id="artist">{{ song_list[i]["artist"] }}</div>
+                                    <div id="title">{{ song_list[0]["name"] }}</div>
+                                    <div id="artist">{{ song_list[0]["artist"] }}</div>
                                 </div>
-                               
-                                <div id="genre">{{ song_list[i]["genre"] }}</div>
-                            
+                                <div id="genre">{{ song_list[0]["genre"] }}</div>
                             </div>
-                        {% else %}
+                     
                             <div id="light">
                                 <div id="sinfo">
-                                    <div id="title">{{ song_list[i]["name"] }}</div>
-                                    <div id="artist">{{ song_list[i]["artist"] }}</div>
+                                    <div id="title">{{ song_list[1]["name"] }}</div>
+                                    <div id="artist">{{ song_list[1]["artist"] }}</div>
                                 </div>
-                                <div id="genre">{{ song_list[i]["genre"] }}</div>
+                                <div id="genre">{{ song_list[1]["genre"] }}</div>
                             </div>
-                        {% endif %}
-                    {% endfor %}       
+                            <div id="dark">
+                                <div id="sinfo">
+                                    <div id="title">{{ song_list[2]["name"] }}</div>
+                                    <div id="artist">{{ song_list[2]["artist"] }}</div>
+                                </div>
+                                <div id="genre">{{ song_list[2]["genre"] }}</div>
+                            </div>
+                            <div id="light">
+                                <div id="sinfo">
+                                    <div id="title">{{ song_list[3]["name"] }}</div>
+                                    <div id="artist">{{ song_list[3]["artist"] }}</div>
+                                </div>
+                                <div id="genre">{{ song_list[3]["genre"] }}</div>
+                            </div>                    
+                            <div id="dark">
+                                <div id="sinfo">
+                                    <div id="title">{{ song_list[4]["name"] }}</div>
+                                    <div id="artist">{{ song_list[4]["artist"] }}</div>
+                                </div>
+                                <div id="genre">{{ song_list[4]["genre"] }}</div>
+                            </div>    
                 </div>
             </div>
         </div>
