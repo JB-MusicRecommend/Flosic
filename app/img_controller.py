@@ -95,6 +95,6 @@ def predict_image(directory):
     
     model.evaluate(test_ds)
     classes = model.predict(test_ds, batch_size=10)
-    return np.argmax(classes)
+    return int(np.argmax(classes))
     
     
