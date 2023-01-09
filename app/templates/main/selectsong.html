@@ -779,21 +779,24 @@
     
 
     <div class="search0">
-        <!-- <div class="search">
-            <input type="text" placeholder="검색어 입력">
-            <img id="icon1" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-        </div> -->
-            
         <div class="form">
             <form action="/uploadimage" method="POST" enctype="multipart/form-data">
                 <div class="button">
                     <label for="chooseFile">
                         <img id="icon2" src="{{ url_for('static', filename='image/camera.jpg') }}" alt="" width="100px" height="100px">
                     </label>
+                    <input type="file" id="chooseFile" name="file"/>
                 </div>
-                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-            </form>
-        </div>
+                
+                <div class="btc">
+                    <div class="buttonContainer">
+                        <div class="submitButton" id="submitButton">
+                            <input type="submit" value="SUBMIT"/>
+                        </div>
+                    </div>
+                </div>
+            </form>     
+        </div>        
     </div>
     
 
