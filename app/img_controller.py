@@ -80,6 +80,7 @@ def createdir(directory):
 
 def predict_image(directory):
     dir = directory
+    print(dir)
     model = tf.keras.models.load_model('./imagemodel_v1.h5')
     img_height, img_width, batch_size = 150, 150, 16
     test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)

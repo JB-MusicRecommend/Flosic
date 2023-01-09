@@ -21,6 +21,7 @@
                 꽃 이름 : <input name='name' type='text'/><br>
                 꽃 말   : <input name='word' type='text'/><br>
                 꽃 설명 : <input name='etc' type='text'/><br>
+                모델 넘버 : <input name='modelnum' type='text'/><br>
                 <input type="submit" value="추가">
             </form>
         </div>
@@ -32,6 +33,7 @@
                     <th>Name</th>
                     <th>Word</th>
                     <th>Description</th>
+                    <th>Model Number</th>
                 </tr>
             </thead>
        
@@ -42,6 +44,7 @@
                         <td>{{ flower['name'] }}</td>
                         <td>{{ flower['word'] }}</td>
                         <td>{{ flower['etc'] }}</td>
+                        <td>{{ flower['modelnum'] }}</td>
                             
                         <td><form action="/deleteflower/{{ flower['id'] }}" method="POST">
                                 <input type="submit" value="delete">

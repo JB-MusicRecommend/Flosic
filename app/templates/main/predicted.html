@@ -358,27 +358,75 @@
             }
         }
 
-
-
-        .container{
-            margin: 10px;
+        .full{
+            width: 90%;
+            height: 100%;
             position: absolute;
             top: 300px;
             text-align: center;
-            width: 100%;
+            margin: 0 100px 0 100px;
+        }
+
+        .container{
+            margin: auto;
+            top: 300px;
+            text-align: center;
+            width: 965px;
+            display: flex;
+            gap: 20px;
 
         }
 
-        .songlist{
+        .allsong{
+            display: block;
             width: 480px;
             height: 600px;
-            background-color: gray;
+            background-color: rgb(203, 203, 203);
             border-radius: 3%;
+        }
+        .songlabel0{
+            height: 80px;
+            width: 480px;
+        }
+        .songlabel1{
+            background-color: gray;
+            width: 480px;
+            height: 40px;
+            display: flex;
+        }
+        .songlist{
+            width: 480px;
+            height: 460px;
+            background-color: gray;
             display: inline-block;
             margin: auto;
-
+            overflow-y: scroll;
+            scroll-behavior: smooth;
         }
 
+        #songinfo{
+            margin: auto;
+            color: #080f34;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        #sinfo{
+            font-size: 14px;
+            color: #080f34;
+            margin: auto;
+        }
+
+        #title{
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        #genre{
+            font-size: 14px;
+            color: #080f34;
+            margin: auto;
+        }
         .flowerui{
             width: 550px;
             height: 600px;
@@ -498,12 +546,23 @@
             height: 90px;
             background-color: rgba(226, 226, 226, 0.392);
             margin: 0 5px 0 5px;
+            display: flex;
         }
 
         #light{
             height: 90px;
-            background-color: #fff;
+            background-color: rgb(218, 218, 218);
             margin: 0 5px 0 5px;
+        }
+
+        footer {
+            width: 100%;
+            height: 110px; /* 내용물에 따라 알맞는 값 설정 */
+            bottom: 0px;
+            top: 1000px;
+            text-align: center;
+            position: absolute;
+            font-size: 15px;
         }
 
     </style>
@@ -532,48 +591,48 @@
         <img id="back" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FcK32wf%2FbtqEBnQ2bSV%2FRUnYwxbL6CANymmbJNtVk0%2Fimg.png" alt="" width="50">
         <ul>
             <div class="box">
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0000.jpg') }}" alt="" width="100" height="100"><p class="hover_text">flower1</p></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0001.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0002.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0003.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0004.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0005.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended0"><img id="fl" src="{{ url_for('static', filename='image/0.jpg') }}" alt="" width="100" height="100"><p class="hover_text">flower1</p></a></li>
+                <li><a href="/recommended1"><img id="fl" src="{{ url_for('static', filename='image/1.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended2"><img id="fl" src="{{ url_for('static', filename='image/2.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended3"><img id="fl" src="{{ url_for('static', filename='image/3.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended4"><img id="fl" src="{{ url_for('static', filename='image/4.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended5"><img id="fl" src="{{ url_for('static', filename='image/5.jpg') }}" alt="" width="100" height="100"></a></li>
             </div>
     
             <div class="box">
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0006.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0007.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0008.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0009.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0010.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0011.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended6"><img id="fl" src="{{ url_for('static', filename='image/6.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended7"><img id="fl" src="{{ url_for('static', filename='image/7.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended8"><img id="fl" src="{{ url_for('static', filename='image/8.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended9"><img id="fl" src="{{ url_for('static', filename='image/9.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended10"><img id="fl" src="{{ url_for('static', filename='image/10.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended11"><img id="fl" src="{{ url_for('static', filename='image/11.jpg') }}" alt="" width="100" height="100"></a></li>
             </div>
     
             <div class="box">
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0012.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0013.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0014.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0015.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0016.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0017.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended12"><img id="fl" src="{{ url_for('static', filename='image/12.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended13"><img id="fl" src="{{ url_for('static', filename='image/13.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended14"><img id="fl" src="{{ url_for('static', filename='image/14.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended15"><img id="fl" src="{{ url_for('static', filename='image/15.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended16"><img id="fl" src="{{ url_for('static', filename='image/16.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended17"><img id="fl" src="{{ url_for('static', filename='image/17.jpg') }}" alt="" width="100" height="100"></a></li>
             </div>
     
             <div class="box">
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0018.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0019.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0020.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0021.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0022.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0023.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended18"><img id="fl" src="{{ url_for('static', filename='image/18.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended19"><img id="fl" src="{{ url_for('static', filename='image/19.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended20"><img id="fl" src="{{ url_for('static', filename='image/20.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended21"><img id="fl" src="{{ url_for('static', filename='image/21.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended22"><img id="fl" src="{{ url_for('static', filename='image/22.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended23"><img id="fl" src="{{ url_for('static', filename='image/23.jpg') }}" alt="" width="100" height="100"></a></li>
             </div>
     
             <div class="box">
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0024.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0025.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0026.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0027.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0028.jpg') }}" alt="" width="100" height="100"></a></li>
-                <li><a href="http://www.naver.com"><img id="fl" src="{{ url_for('static', filename='image/0029.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended24"><img id="fl" src="{{ url_for('static', filename='image/24.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended25"><img id="fl" src="{{ url_for('static', filename='image/25.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended26"><img id="fl" src="{{ url_for('static', filename='image/26.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended27"><img id="fl" src="{{ url_for('static', filename='image/27.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended28"><img id="fl" src="{{ url_for('static', filename='image/28.jpg') }}" alt="" width="100" height="100"></a></li>
+                <li><a href="/recommended29"><img id="fl" src="{{ url_for('static', filename='image/29.jpg') }}" alt="" width="100" height="100"></a></li>
             </div>
         </ul>
         <img id="next" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FTWq2J%2FbtqEBdA2ene%2FhGRW5eH7EFHllWqfIGDFr1%2Fimg.png" alt="" width="50">
@@ -616,33 +675,67 @@
     });
 </script>
 
-    <div class="container">
-        <div class="flowerui">
-            <div class="flower">
-                <img id="finfo" src="{{ url_for('static', filename='image/0000.jpg') }}" alt="" width="300" height="300">
-                <h3 id="finfo">{{ flowerlist[0]["꽃이름"] }}</h3>
-                <p id="finfo">{{ flowerlist[0]["꽃말"] }}</p>
-                <p id="finfo">{{ flowerlist[0]["꽃정보"] }}</p>
+
+    <div class="full">
+        <div class="container">
+            <div class="flowerui">
+                <div class="flower">
+                    
+                    {% set url = "../../static/image/" + (flower['id']|string) + ".jpg" %}
+                    <img id="finfo" src= {{ url }} alt="" width="300" height="300">
+                    <p id="finfo">{{ flower["word"] }}</p>
+                    <p id="finfo">{{ flower["etc"] }}</p>
+                </div>
+            </div>
+        
+            <div class="allsong">
+                <div class="songlabel0">
+                    <img src="{{ url_for('static', filename='image/nlogo.png') }}" alt="" width="230" height="100">
+                </div>
+        
+                <div class="songlabel1">
+                    <div id="songinfo">곡정보</div>
+                    <div id="songinfo">장르</div>
+                </div>
+        
+                <div class="songlist" >
+                    {% for i in range(song_list | length) %}
+                        {% if i % 2 == 1 %}
+                            <div id="dark">
+                                <div id="sinfo">
+                                    <div id="title">{{ song_list[i]["name"] }}</div>
+                                    <div id="artist">{{ song_list[i]["artist"] }}</div>
+                                </div>
+                               
+                                <div id="genre">{{ song_list[i]["genre"] }}</div>
+                            
+                            </div>
+                        {% else %}
+                            <div id="light">
+                                <div id="sinfo">
+                                    <div id="title">{{ song_list[i]["name"] }}</div>
+                                    <div id="artist">{{ song_list[i]["artist"] }}</div>
+                                </div>
+                                <div id="genre">{{ song_list[i]["genre"] }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}       
+                </div>
             </div>
         </div>
-    
-        <div class="songlist">
-            <div id="dark"></div>
-            <div id="light"></div>
-            <div id="dark"></div>
-            <div id="light"></div>
-            <div id="dark"></div>
-            <div id="light"></div>
-            <div id="dark"></div>
-            <div id="light"></div>
-            <div id="dark"></div>
-            <div id="light"></div>
-        </div>
     </div>
+    
 
     
 
     
     
 </body>
+
+<footer>
+    <p>
+        <span>@K-Digital Team Project Flosic 2022-2023 </span>
+    </p>
+</footer>
+
 </html>

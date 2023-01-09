@@ -10,6 +10,7 @@ class Flower(Base):
     name = Column(String)
     word = Column(String)
     etc = Column(String)
+    modelnum = Column(Integer)
     
 class Song(Base):
     __tablename__ = 'song'

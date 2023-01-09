@@ -1,11 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import load_only
 from sqlalchemy.sql.expression import null
 from db_config import db_url
 from db_model import Flower, Song
 from flask import request
 import codecs,csv
+import random
 
 engine = create_engine(db_url)
 Session = sessionmaker(bind=engine)
@@ -85,16 +87,17 @@ def read_flower_tolist():
     db = Session()
     flower_list = []
     for flower in db.query(Flower).all():
-        id = flower.id
+        id = flower.id-1
         name = flower.name
         word = flower.word
         etc = flower.etc
-        flower_list.append({'id':id, 'name':name, 'word':word , 'etc':etc})
+        modelnum = flower.modelnum
+        flower_list.append({'id':id, 'name':name, 'word':word , 'etc':etc, 'modelnum':modelnum})
     db.close()
     return flower_list
-def add_flower(name, word, etc):
+def add_flower(name, word, etc, modelnum):
     db = Session()
-    flower = Flower(name=name, word=word , etc=etc)
+    flower = Flower(name=name, word=word , etc=etc, modelnum=modelnum)
     db.add(flower)
     db.commit()
     db.close()
@@ -110,7 +113,45 @@ def delete_flower(id):
     db.delete(flower)
     db.commit()
     db.close()
+    
+def find_flower_as_modelnum(modelnum):
+    db = Session()
+    flower = db.query(Flower).filter(Flower.modelnum == modelnum).first()
+    db.close()
+    return flower
 
+def read_matched_song_list(flower):
+    db = Session()
+    song_list = []
+
+    query = (
+        db.query(Song)
+        .options(load_only("id", "title", "artist", "genre", "rdate", "lyrics", "enlyr", "preproc", "postproc"))
+        .filter(Song.postproc.like(f"%{flower['word']}%"))
+    )
+
+    for song in query.all():
+        song_dict = {
+            'id': song.id,
+            'title': song.title,
+            'artist': song.artist,
+            'genre': song.genre,
+            'rdate': song.rdate,
+            'lyrics': song.lyrics,
+            'enlyr': song.enlyr,
+            'preproc': song.preproc,
+            'postproc': song.postproc,
+        }    
+        song_list.append(song_dict)
+    db.close()
+
+    while len(song_list) > 5:
+        a = random.randint(0, len(song_list)-1)
+        song_list.pop(a)
+    
+
+    return song_list
+    
 def read_song_tolist():
     db = Session()
     song_list = []

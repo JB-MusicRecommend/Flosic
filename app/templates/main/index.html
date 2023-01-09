@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flosic</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
@@ -15,11 +15,11 @@
     <div id="wrap">
         <header id="header" class="fix">
             <div class="inner">
-                <h1><a href="/"><img src="{{ url_for('static', filename='image/logo.jpg') }}" width="300">TEAMasdf</a></h1>
+                <h1><a href="/"><img src="{{ url_for('static', filename='image/logo.jpg') }}" width="300">Flosic</a></h1>
                 <nav>
                     
                     <ul class="lnb">
-
+                        
                         <li><a href="#introduce" onclick="fnMove('1')">소개</a></li>
                         <li><a href="#process" onclick="fnMove('2')">이용방법</a></li>
                         <li><a href="#advantage" onclick="fnMove('3')">서비스특징</a></li>
@@ -123,10 +123,10 @@
         
         <div class="visual">
             <div class="inner">
-                <h2>TEAMasdf
+                <h2>Flosic
                 </h2>
                  
-                <p>꽃말음악추천.</p>
+                <p>꽃말음악추천</p>
                 
                 
                 <a href="/selectsong" class="bt_more">지금 시작하기</a>
@@ -135,25 +135,75 @@
         </div>
         
         <hr>
+
+        
+
         <section id="introduce" class="cont1">
+
+            <img src="{{ url_for('static', filename='image/logo.png') }}" alt="">
+
             <h2><mark>소개말</mark>
-            (소개말)</h2>
-            <p>가나다라마바사</p>
+            Flosic은 ?</h2>
+            <p>꽃들은 서로 다른 개성적인 외관처럼 서로 다른 의미의 꽃말을 가지고 있습니다. 
+                Flosic에서 꽃말과 어울리는 노래를 추천해드립니다!</p>
             
             
         </section>
         
         <section id="process" class="cont2">
-            <h2>이용방법
-            <mark>(이용방법)</mark></h2>
+            <h2>이용방법</h2>
+            <p><mark>총 30종의 꽃들을 선택하여 어울리는 노래를 만나보세요.</mark></p>
+
+            <br>
+
+            <div class="listall">
+                <div class="list1">
+                    <img src="{{ url_for('static', filename='image/0.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/1.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/2.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/3.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/4.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/5.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/6.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/7.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/8.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/9.jpg') }}" alt="" width="70" height="70">
+                </div>
+                <div class="list2">
+                    <img src="{{ url_for('static', filename='image/10.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/11.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/12.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/13.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/14.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/15.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/16.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/17.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/18.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/19.jpg') }}" alt="" width="70" height="70">
+                </div>
+                <div class="list3">
+                    <img src="{{ url_for('static', filename='image/20.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/21.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/22.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/23.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/24.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/25.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/26.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/27.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/28.jpg') }}" alt="" width="70" height="70">
+                    <img src="{{ url_for('static', filename='image/29.jpg') }}" alt="" width="70" height="70">
+                </div>
+            </div>
             
         
         <section id="advantage" class="cont3">
             <div class="box">
-                <img src="{{ url_for('static', filename='image/logo.jpg') }}" alt="">
+                <img src="{{ url_for('static', filename='image/ai.png') }}" alt="">
                 <h2>서비스특징
-                <mark>(서비스특징)</mark></h2>
-                <p>가나다라마바사</p>
+                <mark>AI를 활용한 곡 분류</mark></h2>
+                <p>가사 데이터 & 꽃말 데이터간 단어 유사도를 비교하여
+                    꽃의 꽃말과 유사한 가사로 쓰여진 노래들을 꽃 종류별로 분류
+                </p>
             </div>
         </section>
         
@@ -180,4 +230,11 @@
     
     </body>
 </body>
+
+<footer>
+    <p>
+        <span>@K-Digital Team Project Flosic 2022-2023 </span>
+    </p>
+</footer>
+
 </html>
