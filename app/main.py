@@ -8,7 +8,6 @@ from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = 'flosic'
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=10)
 
 @app.route("/")
 @app.route("/home")
