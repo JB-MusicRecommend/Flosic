@@ -4,14 +4,19 @@ import sessionfeature as ssft
 import img_controller as imgctr
 import os
 import lmodelupdate as lmdupdate
+from datetime import timedelta
 
 app = Flask(__name__)
-app.secret_key = 'sk'
- 
+app.secret_key = 'flosic'
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=10)
+
 @app.route("/")
 @app.route("/home")
 def home():
     if 'auth' not in session:
+        ssft.create_session()
+    else:
+        ssft.delete_session()
         ssft.create_session()
 
     return render_template('main/index.html')
@@ -20,9 +25,20 @@ def home():
 def selectsong():
     return render_template('main/selectsong.html')
 
-@app.route('/matchedlist')
-def matchedlist():
-    return render_template('main/matchedlist.html')
+@app.route('/recommended<int:id>')
+def recommended(id):
+    flowerlist = db.read_flower_tolist()
+
+    flower = flowerlist[id]
+    flower['id'] = flower['id'] - 1
+    if flower['etc'] == None:
+        flower['etc'] = '없음'
+    song_list= db.read_matched_song_list(flower)
+
+    return render_template('main/recommended.html', song_list = song_list, flower = flower)
+
+
+
 
 @app.route("/adminlogin", methods=['GET', 'POST'])
 def admlogin():       
@@ -76,7 +92,7 @@ def flowerindex():
 @app.route("/addflower/", methods=['GET', 'POST'])
 def addflower():   
     if request.method == 'POST':
-        db.add_flower(request.form['name'], request.form['word'] , request.form['etc'])
+        db.add_flower(request.form['name'], request.form['word'] , request.form['etc'], request.form['modelnum'])
     return redirect('/flowerindex/')
 
 @app.route("/deleteflower/<int:id>", methods=['GET', 'POST'])
@@ -102,18 +118,29 @@ def uploadimage():
         modified_dir_path = imgctr.upload_image(image,session)
         session['dir'] = modified_dir_path
 
-    return redirect('/songindex/')
+    return redirect('/predictimage')
 
 @app.route("/predictimage")
 def predictimage():
     if session['dir'] is not None:
         if os.path.exists(session['dir']):
-            dir = os.path.dirname(os.path.dirname(session['dir']))      
-            predicted_number = imgctr.predict_image(dir)     
-            predicted_flower = [name for name, number in imgctr.flower_list.items() if number == predicted_number][0]
-            session['preimg'] = predicted_flower
-         
-    return redirect('/songindex/')
+            dir = os.path.dirname(os.path.dirname(session['dir']))    
+            predicted_number = imgctr.predict_image(dir)
+            flower = db.find_flower_as_modelnum(predicted_number)
+            num = flower['id']     
+            url = '/predicted' +  str(num)
+            return redirect(url)
+        
+@app.route('/predicted<int:id>')
+def predited(id):
+    flowerlist = db.read_flower_tolist()
+    flower = flowerlist[id]
+    flower['id'] = flower['id'] - 1
+    if flower['etc'] == None:
+        flower['etc'] = '없음'
+    song_list= db.read_matched_song_list(flower)
+
+    return render_template('main/predicted.html', song_list = song_list, flower = flower)
 
 @app.route("/gnumodel")
 def gnsmodel():
@@ -126,13 +153,3 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
     
 
-
-
-# 추가할 모듈이 있다면 추가
-# config 파일이 있다면 추가
- 
-# 앞으로 새로운 폴더를 만들어서 파일을 추가할 예정임
-# from app.main.[파일 이름] --> app 폴더 아래에 main 폴더 아래에 [파일 이름].py 를 import 한 것임
- 
-# 위에서 추가한 파일을 연동해주는 역할
-# app.register_blueprint(추가한 파일)

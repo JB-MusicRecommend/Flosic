@@ -8,7 +8,7 @@ def create_session():
     session['auth'] = 'none'
     session['imgup'] = 'no'
     session['dir'] = 'none'
-    session['preimg'] = 'none'
+
 
 def delete_session():
     delete_files_dir()
@@ -16,7 +16,7 @@ def delete_session():
     session.pop('auth', None)
     session.pop('imgup', None)
     session.pop('dir', None)
-    session.pop('preimg', None)
+
 
 def delete_files_dir():
     path = './static/uploaded/'+session['id']
