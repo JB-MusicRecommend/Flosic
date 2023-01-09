@@ -11,7 +11,8 @@ def create_session():
 
 
 def delete_session():
-    delete_files_dir()
+    if session['id'] is not None:
+        delete_files_dir()
     session.pop('id', None)
     session.pop('auth', None)
     session.pop('imgup', None)
