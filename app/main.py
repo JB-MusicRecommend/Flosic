@@ -29,9 +29,6 @@ def recommended(id):
     flowerlist = db.read_flower_tolist()
 
     flower = flowerlist[id]
-    flower['id'] = flower['id'] - 1
-    if flower['etc'] == None:
-        flower['etc'] = '없음'
     song_list= db.read_matched_song_list(flower)
 
     return render_template('main/recommended.html', song_list = song_list, flower = flower)
